@@ -1,0 +1,70 @@
+---
+title: rCharts
+subtitle: Interactive JS Charts from R
+author: Ramnath Vaidyanathan
+github: {user: ramnathv, repo: rChartsGG1, branch: "gh-pages"}
+framework: minimal
+mode: selfcontained
+widgets: [polycharts]
+highlighter: highlight.js
+hitheme: solarized_light
+# background: images/subtle_freckles.png
+assets:
+  css: 
+    - "http://fonts.googleapis.com/css?family=Open+Sans"
+    - "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700"
+---
+
+```{r echo = F, message = F, cache = F}
+opts_chunk$set(results = 'asis', comment = NA, message = F, tidy = F)
+require(rCharts)
+options(RCHART_WIDTH = 600, RCHART_HEIGHT = 400)
+```
+
+# Replicating Examples from R Cookbook
+
+This post is an attempt to replicate examples from the [R Cookbook](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/) using rCharts and Polychart.
+
+
+```{r setup}
+data(tips, package = 'reshape2')
+```
+
+### Scatterplot
+
+```{r}
+tips = transform(tips, tip_pct = tip/total_bill)
+p1 <- rPlot(tip_pct ~ total_bill, data = tips, type = 'point')
+p1$print('chart1')
+```
+
+### Facet
+
+```{r}
+p2 <- rPlot(tip_pct ~ total_bill | sex, data = tips, type = 'point')
+p2$print('chart2')
+```
+
+### Facet Grid
+
+```{r}
+p3 <- rPlot(tip_pct ~ total_bill | sex + day, data = tips, type = 'point')
+p3$facet(formatter = "function(x){ return x.sex + ' ' +  x.day }")
+p3$print('chart3')
+```
+
+### Facet Wrap
+
+```{r}
+p4 <- rPlot(tip_pct ~ total_bill, data = tips, type = 'point')
+p4$facet(var = 'day', rows = 2, type = 'wrap', 
+  formatter = "function(x){ return x.day }")
+p4$print('chart4')
+```
+
+
+### Notes
+
+This post is fully reproducible. You will need to have the `dev` version of the [slidify](http://github.com/ramnathv/slidify) package installed.
+
+
