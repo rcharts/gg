@@ -8,7 +8,7 @@ mode: selfcontained
 widgets: [polycharts]
 highlighter: highlight.js
 hitheme: solarized_light
-# background: images/subtle_freckles.png
+# background: images/light_wool.png
 assets:
   css: 
     - "http://fonts.googleapis.com/css?family=Open+Sans"
@@ -20,7 +20,7 @@ assets:
 
 # Replicating Examples from R Cookbook
 
-This post is an attempt to replicate examples from the [R Cookbook](http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/) using rCharts and Polychart.
+This post is an attempt to replicate examples from the <a href='http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/'>R Cookbook</a> using rCharts and Polychart.
 
 
 
